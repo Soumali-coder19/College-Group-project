@@ -1,0 +1,23 @@
+def show_data():
+    my_song=song.get()
+    list=recommendations.recommend(my_song, 10)
+    list.grid(row=20,column=1)
+
+from tkinter import *
+root=Tk()
+root.geometry("420x300")
+l1=Label(root, text="Enter name of your favourite song: ")
+l2=Label(root, text="Top 10 song suggestions for you: ")
+song=Entry(root)
+#song.pack()
+l1.grid(row=0)
+l2.grid(row=2)
+song.grid(row=0, column=1)
+               
+            
+txt=Text(root,width=50,height=13, wrap=WORD)
+#txt.grid(row=10, columnspan=2, sticky=W)         
+btn=Button(root, text="Search", bg="purple", fg="white", command=show_data)
+btn.grid(row=1, columnspan=2)
+root.mainloop()
+

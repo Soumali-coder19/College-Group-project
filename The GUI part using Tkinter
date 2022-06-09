@@ -1,23 +1,34 @@
-def show_data():
-    my_song=song.get()
-    list=recommendations.recommend(my_song, 10)
-    list.grid(row=20,column=1)
-
 from tkinter import *
-root=Tk()
-root.geometry("420x300")
-l1=Label(root, text="Enter name of your favourite song: ")
-l2=Label(root, text="Top 10 song suggestions for you: ")
-song=Entry(root)
-#song.pack()
-l1.grid(row=0)
-l2.grid(row=2)
-song.grid(row=0, column=1)
-               
-            
-txt=Text(root,width=50,height=13, wrap=WORD)
-#txt.grid(row=10, columnspan=2, sticky=W)         
-btn=Button(root, text="Search", bg="purple", fg="white", command=show_data)
-btn.grid(row=1, columnspan=2)
-root.mainloop()
-
+ 
+root = Tk()
+root.geometry("300x300")
+root.title(" Song recommender ")
+ 
+def Take_input():
+    INPUT = inputtxt.get("1.0", "end-1c")
+    list=recommendations.recommend(INPUT, 10)  #calling function to return playlist
+    show_list=list['name']                     #extracting only the song names
+    for x in show_list:
+        Output.insert(END, x + '\n')
+   # Output.insert(list)
+     
+l = Label(text = "What is your favourite song?")
+inputtxt = Text(root, height = 10,
+                width = 25,
+                bg = "light yellow")
+ 
+Output = Text(root, height = 15,
+              width = 25,
+              bg = "light cyan")
+ 
+Display = Button(root, height = 2,
+                 width = 20,
+                 text ="Show playlist",
+                 command = lambda:Take_input())
+ 
+l.pack()
+inputtxt.pack()
+Display.pack()
+Output.pack()
+ 
+mainloop()
